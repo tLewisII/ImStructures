@@ -10,6 +10,7 @@
 		DB9962461945241600360957 /* ImStructures.h in Headers */ = {isa = PBXBuildFile; fileRef = DB9962451945241600360957 /* ImStructures.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DB99624C1945241600360957 /* ImStructures.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB9962401945241600360957 /* ImStructures.framework */; };
 		DB9962531945241600360957 /* ImStructuresTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9962521945241600360957 /* ImStructuresTests.swift */; };
+		DB99625E1945244C00360957 /* ImArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB99625D1945244C00360957 /* ImArray.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		DB99624B1945241600360957 /* ImStructuresTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImStructuresTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB9962511945241600360957 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DB9962521945241600360957 /* ImStructuresTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImStructuresTests.swift; sourceTree = "<group>"; };
+		DB99625D1945244C00360957 /* ImArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImArray.swift; path = Source/ImArray.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 		DB9962421945241600360957 /* ImStructures */ = {
 			isa = PBXGroup;
 			children = (
+				DB99625C1945242000360957 /* Source */,
 				DB9962451945241600360957 /* ImStructures.h */,
 				DB9962431945241600360957 /* Supporting Files */,
 			);
@@ -100,6 +103,14 @@
 				DB9962511945241600360957 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DB99625C1945242000360957 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				DB99625D1945244C00360957 /* ImArray.swift */,
+			);
+			name = Source;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -210,6 +221,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB99625E1945244C00360957 /* ImArray.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,6 +328,7 @@
 		DB9962571945241600360957 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -327,12 +340,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		DB9962581945241600360957 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
