@@ -82,6 +82,12 @@ struct ImArray<A: Equatable> : Sequence {
         return reduced
     }
     
+    func sort(f:(A,A) -> Bool) -> ImArray<A> {
+        var newArr = backing
+        newArr.sort(f)
+        return ImArray(array: newArr)
+    }
+    
     func generate() -> ImArrayGenerator<A>  {
         let items = backing
         return ImArrayGenerator(items: items[0..items.count])
@@ -110,6 +116,7 @@ func !=<A>(lhs:ImArray<A>, rhs:ImArray<A>) -> Bool {
 func +=<A>(lhs:ImArray<A>, rhs:A) -> ImArray<A> {
     return lhs.append(rhs)
 }
+
 
 
 

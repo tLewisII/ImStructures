@@ -12,7 +12,7 @@ struct ImArray<A: Equatable> : Sequence {
     var backing:Array<A> = Array()
     
     var array:Array<A> {
-    return backing
+        return backing
     }
     
     subscript(index:Int) -> A {
@@ -86,6 +86,12 @@ struct ImArray<A: Equatable> : Sequence {
             reduced = f(x, reduced)
         }
         return reduced
+    }
+    
+    func sort(f:(A,A) -> Bool) -> ImArray<A> {
+        var newArr = backing
+        newArr.sort(f)
+        return ImArray(array: newArr)
     }
     
     func generate() -> ImArrayGenerator<A>  {
