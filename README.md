@@ -25,3 +25,4 @@ imArray.scanl(0, f:+) /// like reduce, be give intermediate results [0, 1, 3, 6,
 imArray.splitAt(3) /// ([1,2,3], [4,5,6])
 imArray.intersperse(9) // [1,9,2,9,3,9,4,9,5,9,6]
 ```
+Pull Requests are welcome.
