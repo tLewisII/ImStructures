@@ -11,6 +11,7 @@
 		DB99624C1945241600360957 /* ImStructures.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB9962401945241600360957 /* ImStructures.framework */; };
 		DB9962531945241600360957 /* ImStructuresTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9962521945241600360957 /* ImStructuresTests.swift */; };
 		DB99625E1945244C00360957 /* ImArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB99625D1945244C00360957 /* ImArray.swift */; };
+		DB9962611945312E00360957 /* ImArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9962601945312E00360957 /* ImArrayTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +32,8 @@
 		DB9962511945241600360957 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DB9962521945241600360957 /* ImStructuresTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImStructuresTests.swift; sourceTree = "<group>"; };
 		DB99625D1945244C00360957 /* ImArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImArray.swift; path = Source/ImArray.swift; sourceTree = "<group>"; };
+		DB99625F1945305F00360957 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = MyPlayground.playground; path = Playground/MyPlayground.playground; sourceTree = SOURCE_ROOT; };
+		DB9962601945312E00360957 /* ImArrayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImArrayTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				DB9962441945241600360957 /* Info.plist */,
+				DB99625F1945305F00360957 /* MyPlayground.playground */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -93,6 +97,7 @@
 			children = (
 				DB9962521945241600360957 /* ImStructuresTests.swift */,
 				DB9962501945241600360957 /* Supporting Files */,
+				DB9962601945312E00360957 /* ImArrayTests.swift */,
 			);
 			path = ImStructuresTests;
 			sourceTree = "<group>";
@@ -230,6 +235,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB9962531945241600360957 /* ImStructuresTests.swift in Sources */,
+				DB9962611945312E00360957 /* ImArrayTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

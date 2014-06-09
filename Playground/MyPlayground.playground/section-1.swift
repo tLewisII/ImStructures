@@ -1,12 +1,6 @@
-//
-//  ImArray.swift
-//  ImStructures
-//
-//  Created by Terry Lewis II on 6/8/14.
-//  Copyright (c) 2014 Blue Plover Productions LLC. All rights reserved.
-//
+// Playground - noun: a place where people can play
 
-import Foundation
+import Cocoa
 
 struct ImArray<A: Equatable> : Sequence {
     var backing:Array<A> = Array()
@@ -76,7 +70,7 @@ struct ImArray<A: Equatable> : Sequence {
         return ImArray<B>(array: backing.map(f))
     }
     
-    func reduce<B>(start:B, f:((A,B) -> B)) -> B {        
+    func reduce<B: Equatable>(start:B, f:((A,B) -> B)) -> B {
         var reduced = start
         for x in self {
             reduced = f(x, reduced)
@@ -113,3 +107,10 @@ func +=<A>(lhs:ImArray<A>, rhs:A) -> ImArray<A> {
     return lhs.append(rhs)
 }
 
+
+
+let imArray = ImArray(items:1,2,3,4,5,6,7)
+imArray.join([1,2,3])
+imArray.join(ImArray(item: 1))
+
+imArray.reduce(0, f:+)
