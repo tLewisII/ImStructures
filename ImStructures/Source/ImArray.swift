@@ -15,8 +15,12 @@ struct ImArray<A: Equatable> : Sequence {
     return backing
     }
     
-    subscript(subRange:Int) -> A {
-        return backing[subRange]
+    subscript(index:Int) -> A {
+        return backing[index]
+    }
+    
+    subscript(subRange:Range<Int>) -> ImArray<A> {
+        return ImArray(array: Array(backing[subRange]))
     }
     
     var count:Int {
@@ -76,7 +80,7 @@ struct ImArray<A: Equatable> : Sequence {
         return ImArray<B>(array: backing.map(f))
     }
     
-    func reduce<B>(start:B, f:((A,B) -> B)) -> B {        
+    func reduce<B>(start:B, f:((A,B) -> B)) -> B {
         var reduced = start
         for x in self {
             reduced = f(x, reduced)
@@ -112,4 +116,3 @@ func !=<A>(lhs:ImArray<A>, rhs:ImArray<A>) -> Bool {
 func +=<A>(lhs:ImArray<A>, rhs:A) -> ImArray<A> {
     return lhs.append(rhs)
 }
-

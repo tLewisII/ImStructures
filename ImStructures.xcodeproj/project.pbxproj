@@ -96,8 +96,8 @@
 			isa = PBXGroup;
 			children = (
 				DB9962521945241600360957 /* ImStructuresTests.swift */,
-				DB9962501945241600360957 /* Supporting Files */,
 				DB9962601945312E00360957 /* ImArrayTests.swift */,
+				DB9962501945241600360957 /* Supporting Files */,
 			);
 			path = ImStructuresTests;
 			sourceTree = "<group>";
