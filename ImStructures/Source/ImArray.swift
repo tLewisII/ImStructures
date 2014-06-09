@@ -12,7 +12,7 @@ struct ImArray<A: Equatable> : Sequence {
     var backing:Array<A> = Array()
     
     var array:Array<A> {
-        return backing
+    return backing
     }
     
     subscript(index:Int) -> A {
@@ -80,13 +80,10 @@ struct ImArray<A: Equatable> : Sequence {
         return ImArray<B>(array: backing.map(f))
     }
     
-    func reduce<B>(start:B, f:((A,B) -> B)) -> B {
-        var reduced = start
-        for x in self {
-            reduced = f(x, reduced)
-        }
-        return reduced
+    func reduce<U>(start:U, f:((U,A) -> U)) -> U {
+        return backing.reduce(start, combine: f)
     }
+    
     
     func sort(f:(A,A) -> Bool) -> ImArray<A> {
         var newArr = backing
@@ -109,6 +106,97 @@ struct ImArrayGenerator<A> : Generator {
     }
     
     var items:Slice<A>
+}
+
+extension ImArray {
+    func scanl<B>(start:B, r:(B, A) -> B) -> ImArray<B> {
+        if self.isEmpty {
+            return ImArray<B>(array: [])
+        }
+        var arr = Array<B>()
+        arr += start
+        var reduced = start
+        for x in self {
+            reduced = r(reduced, x)
+            arr += reduced
+        }
+        return ImArray<B>(array: arr)
+    }
+    
+    //tuples can not be compared with '==' so I will hold off on this for now. rdar://17219478
+    //    func zip<B>(scd:ImArray<B>) -> ImArray<(A,B)> {
+    //        var size = min(self.count, scd.count)
+    //        var newArr = Array<(A,B)>()
+    //        for x in 0..size {
+    //            newArr += (self[x], scd[x])
+    //        }
+    //        return ImArray<(A,B)>(array:newArr)
+    //    }
+    //
+    //    func zip3<B,C>(scd:ImArray<B>, thrd:ImArray<C>) -> ImArray<(A,B,C)> {
+    //        var size = min(self.count, scd.count, thrd.count)
+    //        var newArr = Array<(A,B,C)>()
+    //        for x in 0..size {
+    //            newArr += (self[x], scd[x], thrd[x])
+    //        }
+    //        return ImArray<(A,B,C)>(array:newArr)
+    //    }
+    //
+    //    func zipWith<B,C>(scd:Array<B>, f:((A, B) -> C)) -> ImArray<C> {
+    //        var size = min(self.count, scd.count)
+    //        var newArr = Array<C>()
+    //        for x in 0..size {
+    //            newArr += f(self[x], scd[x])
+    //        }
+    //        return ImArray<C>(array:newArr)
+    //    }
+    //
+    //    func zipWith3<B,C,D>(scd:Array<B>, thrd:Array<C>, f:((A, B, C) -> D)) -> ImArray<D> {
+    //        var size = min(self.count, scd.count, thrd.count)
+    //        var newArr = Array<D>()
+    //        for x in 0..size {
+    //            newArr += f(self[x], scd[x], thrd[x])
+    //        }
+    //        return ImArray<D>(array:newArr)
+    //    }
+    
+    func find(f:(A -> Bool)) -> A? {
+        for x in self {
+            if f(x) {
+                return .Some(x)
+            }
+        }
+        return .None
+    }
+    
+    func splitAt(index:Int) -> (ImArray<A>, ImArray<A>) {
+        switch index {
+        case 0..self.count: return (ImArray(array:self[0..index].array), ImArray(array:self[index..self.count].array))
+        case _:return (ImArray<A>(), ImArray<A>())
+        }
+    }
+    
+    func intersperse(item:A) -> ImArray<A> {
+        func prependAll(item:A, array:Array<A>) -> Array<A> {
+            var arr = Array([item])
+            for i in 0..(array.count - 1) {
+                arr += array[i]
+                arr += item
+            }
+            arr += array[array.count - 1]
+            return arr
+        }
+        if self.isEmpty {
+            return ImArray()
+        } else if self.count == 1 {
+            return self
+        } else {
+            var array = Array([self[0]])
+            array += prependAll(item, Array(self[1..self.count]))
+            return ImArray(array:array)
+        }
+        
+    }
 }
 
 func ==<A>(lhs:ImArray<A>, rhs:ImArray<A>) -> Bool {
