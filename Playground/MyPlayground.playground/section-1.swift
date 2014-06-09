@@ -3,7 +3,7 @@
 import Cocoa
 
 struct ImArray<A: Equatable> : Sequence {
-    var backing:Array<A> = Array()
+    let backing:Array<A> = Array()
     
     var array:Array<A> {
     return backing
@@ -38,7 +38,7 @@ struct ImArray<A: Equatable> : Sequence {
     }
     
     func append(item:A) -> ImArray<A> {
-        var arr = backing
+        var arr = Array(backing)
         arr += item
         return ImArray(array: arr)
     }
@@ -46,7 +46,7 @@ struct ImArray<A: Equatable> : Sequence {
     func join(array:Array<A>) -> ImArray<A> {
         switch array {
         case []: return self
-        case _: var newArr = backing
+        case _: var newArr = Array(backing)
         for x in array {
             newArr += x
         }
@@ -58,7 +58,7 @@ struct ImArray<A: Equatable> : Sequence {
         if imArray.isEmpty {
             return self
         } else {
-            var newArr = backing
+            var newArr = Array(backing)
             for x in imArray {
                 newArr += x
             }
@@ -80,13 +80,13 @@ struct ImArray<A: Equatable> : Sequence {
     
     
     func sort(f:(A,A) -> Bool) -> ImArray<A> {
-        var newArr = backing
+        var newArr = Array(backing)
         newArr.sort(f)
         return ImArray(array: newArr)
     }
     
     func generate() -> ImArrayGenerator<A>  {
-        let items = backing
+        let items = Array(backing)
         return ImArrayGenerator(items: items[0..items.count])
     }
 }
@@ -209,7 +209,10 @@ func +=<A>(lhs:ImArray<A>, rhs:A) -> ImArray<A> {
 
 
 let imArray = ImArray(items:1,2,3,4,5,6)
+imArray.sort(>)
+
 imArray.join([1,2,3])
+
 imArray.join(ImArray(item: 1))
 imArray.scanl(0, r: +)
 let found = imArray.find{$0 == 4}
@@ -219,3 +222,4 @@ imArray.intersperse(9)
 imArray.reduce(0, f:+)
 let split = imArray.splitAt(3)
 split.0
+imArray
