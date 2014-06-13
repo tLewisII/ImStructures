@@ -33,6 +33,10 @@ struct ImDictionary<K:Hashable, V:Comparable> : Sequence {
     return ImArray(array: Array(backing.values))
     }
     
+    init() {
+       /// empty dict
+    }
+    
     init(elements:(K, V)...) {
         for (k,v) in elements {
             backing[k] = v
@@ -124,3 +128,13 @@ struct ImDictGenerator<K, V> : Generator {
     
     var items:Slice<(K,V)>
 }
+
+
+func ==<A:Hashable, B:Equatable>(lhs:ImDictionary<A,B>, rhs:ImDictionary<A,B>) -> Bool {
+    return lhs.backing == rhs.backing
+}
+
+func !=<A:Hashable, B:Equatable>(lhs:ImDictionary<A,B>, rhs:ImDictionary<A,B>) -> Bool {
+    return !(lhs.backing == rhs.backing)
+}
+

@@ -15,6 +15,7 @@
 		DB9962531945241600360957 /* ImStructuresTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9962521945241600360957 /* ImStructuresTests.swift */; };
 		DB99625E1945244C00360957 /* ImArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB99625D1945244C00360957 /* ImArray.swift */; };
 		DB9962611945312E00360957 /* ImArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9962601945312E00360957 /* ImArrayTests.swift */; };
+		DBD36A0D194B77090095D597 /* ImDictionaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD36A0C194B77090095D597 /* ImDictionaryTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		DB99625D1945244C00360957 /* ImArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImArray.swift; path = Source/ImArray.swift; sourceTree = "<group>"; };
 		DB99625F1945305F00360957 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = MyPlayground.playground; path = Playground/MyPlayground.playground; sourceTree = SOURCE_ROOT; };
 		DB9962601945312E00360957 /* ImArrayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImArrayTests.swift; sourceTree = "<group>"; };
+		DBD36A0C194B77090095D597 /* ImDictionaryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImDictionaryTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 				DB9962521945241600360957 /* ImStructuresTests.swift */,
 				DB9962601945312E00360957 /* ImArrayTests.swift */,
 				DB6E1CD7194A8980002D11B8 /* SetTests.swift */,
+				DBD36A0C194B77090095D597 /* ImDictionaryTests.swift */,
 				DB9962501945241600360957 /* Supporting Files */,
 			);
 			path = ImStructuresTests;
@@ -246,6 +249,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB9962531945241600360957 /* ImStructuresTests.swift in Sources */,
+				DBD36A0D194B77090095D597 /* ImDictionaryTests.swift in Sources */,
 				DB6E1CD8194A8980002D11B8 /* SetTests.swift in Sources */,
 				DB9962611945312E00360957 /* ImArrayTests.swift in Sources */,
 			);
