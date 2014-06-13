@@ -92,4 +92,10 @@ class ImArrayTests: XCTestCase {
         XCTAssert(withArray.splitAt(0).0 == ImArray() && withArray.splitAt(0).1 == ImArray(items: 1,2,3,4), "Should be equal")
         XCTAssert(withArray == ImArray(array: [1,2,3,4]), "Should be equal(immutablility test)")
     }
+    
+    func testBacking() {
+        let array:ImArray<Int> = [1,2,3,4]
+        array.array[0] = 2
+        XCTAssert(array == ImArray(items: 1,2,3,4), "Should not be mutated")
+    }
 }

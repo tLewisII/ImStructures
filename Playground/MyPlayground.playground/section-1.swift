@@ -213,7 +213,66 @@ func +=<A>(lhs:ImArray<A>, rhs:A) -> ImArray<A> {
     return lhs.append(rhs)
 }
 
+struct ImDictionary<K: Hashable, V> {
+    let backing = Dictionary<K, V>()
+    
+    var dictionary:Dictionary<K, V> {
+    return backing
+    }
+    
+    var count:Int {
+    return self.count
+    }
+    
+    var keys:ImArray<K> {
+    return ImArray(array: Array(backing.keys))
+    }
+    
+    var values:ImArray<V> {
+    return ImArray(array: Array(backing.values))
+    }
+    
+    init(elements:(K, V)...) {
+        for (k,v) in elements {
+            backing[k] = v
+        }
+    }
+    
+    init(dict:Dictionary<K, V>) {
+        backing = dict
+    }
+    
+    func update(k:K, v:V) -> ImDictionary<K, V> {
+        var temp = backing
+        temp[k] = v
+        return ImDictionary(dict:temp)
+    }
+    
+    func remove(k: K) -> ImDictionary<K,V> {
+        var temp = backing
+        temp.removeValueForKey(k)
+        return ImDictionary(dict: temp)
+    }
+    
+    subscript (key: K) -> V? {
+        return backing[key]
+    }
+}
 
+extension ImDictionary : DictionaryLiteralConvertible {
+    static func convertFromDictionaryLiteral(elements:(K, V)...) -> ImDictionary<K, V> {
+        var temp = Dictionary<K,V>()
+        for (k,v) in elements {
+            temp[k] = v
+        }
+        return ImDictionary(dict: temp)
+    }
+}
+
+let dict:ImDictionary<Int, Int> = [1:1, 2:2, 3:3]
+dict.update(1, v: 2)
+dict.remove(3)
+dict
 
 let imArray = ImArray(items:1,2,3,4,5,6)
 imArray.sort(>)
