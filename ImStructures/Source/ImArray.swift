@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ImArray<A: Equatable> : Sequence {
+struct ImArray<A> : Sequence {
     let backing:Array<A> = Array()
     
     var array:Array<A> {
@@ -30,6 +30,8 @@ struct ImArray<A: Equatable> : Sequence {
     var isEmpty:Bool {
     return backing.isEmpty
     }
+    
+    init() {}
     
     init(items:A...) {
         backing = Array(items)
@@ -106,6 +108,12 @@ struct ImArrayGenerator<A> : Generator {
     }
     
     var items:Slice<A>
+}
+
+extension ImArray : ArrayLiteralConvertible {
+    static func convertFromArrayLiteral(elements: A...) -> ImArray<A> {
+        return ImArray(array:elements)
+    }
 }
 
 extension ImArray {
@@ -187,7 +195,7 @@ extension ImArray {
             return arr
         }
         if self.isEmpty {
-            return ImArray()
+            return self
         } else if self.count == 1 {
             return self
         } else {
@@ -199,11 +207,11 @@ extension ImArray {
     }
 }
 
-func ==<A>(lhs:ImArray<A>, rhs:ImArray<A>) -> Bool {
+func ==<A:Equatable>(lhs:ImArray<A>, rhs:ImArray<A>) -> Bool {
     return lhs.array == rhs.array
 }
 
-func !=<A>(lhs:ImArray<A>, rhs:ImArray<A>) -> Bool {
+func !=<A:Equatable>(lhs:ImArray<A>, rhs:ImArray<A>) -> Bool {
     return !(lhs.array == rhs.array)
 }
 
