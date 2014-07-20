@@ -22,7 +22,7 @@ struct ImDictionary<K:Hashable, V:Comparable> : Sequence {
     }
     
     var toObjc:NSDictionary {
-    return NSDictionary(dictionary: backing)
+    return NSDictionary(objectsAndKeys: backing)
     }
     
     var keys:ImArray<K> {
@@ -104,7 +104,7 @@ struct ImDictionary<K:Hashable, V:Comparable> : Sequence {
         for (k,v) in backing {
             items += (k, v)
         }
-        return ImDictGenerator(items: items[0..items.count])
+        return ImDictGenerator(items: items[0..<items.count])
     }
 }
 
@@ -122,7 +122,7 @@ struct ImDictGenerator<K, V> : Generator {
     mutating func next() -> (K,V)?  {
         if items.isEmpty { return nil }
         let ret = items[0]
-        items = items[1..items.count]
+        items = items[1..<items.count]
         return ret
     }
     

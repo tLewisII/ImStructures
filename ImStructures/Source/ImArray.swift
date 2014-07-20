@@ -41,7 +41,7 @@ struct ImArray<A> : Sequence {
         backing = Array(items)
     }
     
-    init(array:A[]) {
+    init(array:[A]) {
         backing = Array(array)
     }
     
@@ -99,7 +99,7 @@ struct ImArray<A> : Sequence {
     
     func generate() -> ImArrayGenerator<A>  {
         let items = Array(backing)
-        return ImArrayGenerator(items: items[0..items.count])
+        return ImArrayGenerator(items: items[0..<items.count])
     }
 }
 
@@ -107,7 +107,7 @@ struct ImArrayGenerator<A> : Generator {
     mutating func next() -> A?  {
         if items.isEmpty { return nil }
         let ret = items[0]
-        items = items[1..items.count]
+        items = items[1..<items.count]
         return ret
     }
     
@@ -183,7 +183,7 @@ extension ImArray {
     
     func splitAt(index:Int) -> (ImArray<A>, ImArray<A>) {
         switch index {
-        case 0..self.count: return (ImArray(array:self[0..index].array), ImArray(array:self[index..self.count].array))
+        case 0..<self.count: return (ImArray(array:self[0..<index].array), ImArray(array:self[index..<self.count].array))
         case _:return (ImArray<A>(), ImArray<A>())
         }
     }
@@ -191,7 +191,7 @@ extension ImArray {
     func intersperse(item:A) -> ImArray<A> {
         func prependAll(item:A, array:Array<A>) -> Array<A> {
             var arr = Array([item])
-            for i in 0..(array.count - 1) {
+            for i in 0..<(array.count - 1) {
                 arr += array[i]
                 arr += item
             }
@@ -204,7 +204,7 @@ extension ImArray {
             return self
         } else {
             var array = Array([self[0]])
-            array += prependAll(item, Array(self[1..self.count]))
+            array += prependAll(item, Array(self[1..<self.count]))
             return ImArray(array:array)
         }
         
